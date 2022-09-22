@@ -5,7 +5,7 @@ const container: HTMLElement = document.getElementById("game-container")!;
 const boxes: NodeListOf<Element> = document.querySelectorAll(".col")!;
 
 const createCoords = (): Coordinates[][] => {
-    const elementCoords: Coordinates[][] = [];
+    const elementCoords: Coordinates[][] = [[], [], [], []];
     let rowIndex = 0;
     let colIndex = 0;
 
