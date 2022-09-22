@@ -1,0 +1,43 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#game-container {
+    height: fit-content;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: fit-content;
+}
+
+.box {
+    border: 1px solid black;
+    display: grid;
+    height: 100%;
+    width: 100%;
+}
+
+.row {
+    display: flex;
+    height: fit-content;
+    width: fit-content;
+    padding: 0 20px 20px 20px;
+}
+
+.row:first-child {
+    padding-top: 20px;
+}
+
+.col {
+    height: 106.25px;
+    width: 106.25px;
+    background-color: antiquewhite;
+    margin-right: 20px;
+}
+
+.col:last-child {
+    margin-right: 0;
+}
