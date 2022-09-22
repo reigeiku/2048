@@ -1,28 +1,10 @@
-const map: Tile[][] = mapCoords([
-    [
-        { box: null, coords: { x: 0, y: 0 }, value: 0 },
-        { box: null, coords: { x: 0, y: 0 }, value: 0 },
-        { box: null, coords: { x: 0, y: 0 }, value: 0 },
-        { box: null, coords: { x: 0, y: 0 }, value: 0 },
-    ],
-    [
-        { box: null, coords: { x: 0, y: 0 }, value: 0 },
-        { box: null, coords: { x: 0, y: 0 }, value: 0 },
-        { box: null, coords: { x: 0, y: 0 }, value: 0 },
-        { box: null, coords: { x: 0, y: 0 }, value: 0 },
-    ],
-    [
-        { box: null, coords: { x: 0, y: 0 }, value: 0 },
-        { box: null, coords: { x: 0, y: 0 }, value: 0 },
-        { box: null, coords: { x: 0, y: 0 }, value: 0 },
-        { box: null, coords: { x: 0, y: 0 }, value: 0 },
-    ],
-    [
-        { box: null, coords: { x: 0, y: 0 }, value: 0 },
-        { box: null, coords: { x: 0, y: 0 }, value: 0 },
-        { box: null, coords: { x: 0, y: 0 }, value: 0 },
-        { box: null, coords: { x: 0, y: 0 }, value: 0 },
-    ],
-]);
+const tiles: Tile[][] = [
+    [null, null, null, null],
+    [null, null, null, null],
+    [null, null, null, null],
+    [null, null, null, null],
+];
 
-console.log(map);
+const coords: Coordinates[][] = createCoords();
+
+console.log(coords);

@@ -1,14 +1,11 @@
 type Coordinates = { x: number; y: number };
-type Tile = {
-    box: HTMLElement | null;
-    coords: Coordinates;
-    value: number;
-};
+type Tile = HTMLElement | null;
 
 const container: HTMLElement = document.getElementById("game-container")!;
 const boxes: NodeListOf<Element> = document.querySelectorAll(".col")!;
 
-const mapCoords = (mapToFill: Tile[][]): Tile[][] => {
+const createCoords = (): Coordinates[][] => {
+    const elementCoords: Coordinates[][] = [];
     let rowIndex = 0;
     let colIndex = 0;
 
@@ -17,12 +14,12 @@ const mapCoords = (mapToFill: Tile[][]): Tile[][] => {
             rowIndex++;
             colIndex = 0;
         }
-        mapToFill[rowIndex][colIndex].coords = {
+        elementCoords[rowIndex].push({
             x: box.offsetLeft,
             y: box.offsetTop,
-        };
+        });
         colIndex++;
     });
 
-    return mapToFill;
+    return elementCoords;
 };
