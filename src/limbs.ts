@@ -51,6 +51,7 @@ function upCombineCheck(): void {
             tiles[y + 1][x] = null;
             removeTile(currTile, prevTile);
             numOfMovements++;
+            score += prevTile.value;
         }
         moveUp();
     }
@@ -108,6 +109,7 @@ function downCombineCheck(): void {
             tiles[y - 1][x] = null;
             removeTile(currTile, prevTile);
             numOfMovements++;
+            score += prevTile.value;
         }
         moveDown();
     }
@@ -162,6 +164,7 @@ function leftCombineCheck(): void {
             tiles[y][x + 1] = null;
             removeTile(currTile, prevTile);
             numOfMovements++;
+            score += prevTile.value;
         }
         moveLeft();
     }
@@ -216,6 +219,7 @@ function rightCombineCheck(): void {
             tiles[y][x - 1] = null;
             removeTile(currTile, prevTile);
             numOfMovements++;
+            score += prevTile.value;
         }
         moveRight();
     }
@@ -252,6 +256,7 @@ function handleInput(e: any) {
     if (numOfMovements > 0) {
         spawn();
         numOfMovements = 0;
+        scoreBoard.innerText = score.toString();
     }
 
     setupInput();

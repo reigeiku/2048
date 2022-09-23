@@ -23,6 +23,7 @@ type ThemeColour = {
 type Coordinates = { x: number; y: number };
 type TileElement = Tile | null;
 
+const scoreBoard: HTMLElement = document.getElementById("score-board")!;
 const container: HTMLElement = document.getElementById("game-container")!;
 const boxes: NodeListOf<Element> = document.querySelectorAll(".col")!;
 

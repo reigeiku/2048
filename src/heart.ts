@@ -30,6 +30,7 @@ const themeColour: ThemeColour = {
 };
 
 let numOfMovements: number = 0;
+let score: number = 0;
 
 function drawTile(r: number, c: number, v: number): void {
     const coords: Coordinates = tileCoords[r][c];
@@ -68,7 +69,7 @@ function removeTile(deleteTile: Tile, movedTile: Tile): void {
     setTimeout(() => {
         deleteTile.box.remove();
         movedTile.box.style.zIndex = "0";
-    }, 50);
+    }, 70);
 }
 
 setTile();
