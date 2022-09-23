@@ -42,12 +42,13 @@ function upCombineCheck(): void {
             if (currTile.value !== prevTile.value) continue;
 
             const coordsToJumpTo: Coordinates = tileCoords[y][x];
+            prevTile.box.style.zIndex = "99";
             prevTile.coords = coordsToJumpTo;
             prevTile.value = prevTile.value * 2;
 
             tiles[y][x] = prevTile;
             tiles[y + 1][x] = null;
-            currTile.box.remove();
+            removeTile(currTile, prevTile);
         }
         moveUp();
     }
@@ -102,7 +103,7 @@ function downCombineCheck(): void {
 
             tiles[y][x] = prevTile;
             tiles[y - 1][x] = null;
-            currTile.box.remove();
+            removeTile(currTile, prevTile);
         }
         moveDown();
     }
@@ -154,7 +155,7 @@ function leftCombineCheck(): void {
 
             tiles[y][x] = prevTile;
             tiles[y][x + 1] = null;
-            currTile.box.remove();
+            removeTile(currTile, prevTile);
         }
         moveLeft();
     }
@@ -206,7 +207,7 @@ function rightCombineCheck(): void {
 
             tiles[y][x] = prevTile;
             tiles[y][x - 1] = null;
-            currTile.box.remove();
+            removeTile(currTile, prevTile);
         }
         moveRight();
     }

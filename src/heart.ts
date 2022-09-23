@@ -34,4 +34,12 @@ function setTile(): void {
     drawTile(row, col, twoOrFour);
 }
 
+function removeTile(deleteTile: Tile, movedTile: Tile): void {
+    setTimeout(() => {
+        deleteTile.box.remove();
+        movedTile.box.style.zIndex = "0";
+    }, 100);
+}
+
+setTile();
 setTile();
