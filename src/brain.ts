@@ -1,5 +1,5 @@
 type Coordinates = { x: number; y: number };
-type Tile = HTMLElement | null;
+type TileElement = Tile | null;
 
 const container: HTMLElement = document.getElementById("game-container")!;
 const boxes: NodeListOf<Element> = document.querySelectorAll(".col")!;
@@ -23,3 +23,5 @@ const createCoords = (): Coordinates[][] => {
 
     return elementCoords;
 };
+
+const rand = (): number => Math.round(Math.random() * 3);

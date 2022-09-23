@@ -41,3 +41,10 @@
 .col:last-child {
     margin-right: 0;
 }
+
+.tile {
+    background: lime;
+    height: 106.25px;
+    position: absolute;
+    width: 106.25px;
+}
