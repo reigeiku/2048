@@ -240,6 +240,9 @@ function handleInput(e: any) {
             setupInput();
             return;
     }
+
+    spawn();
+
     setupInput();
 }
 setupInput();

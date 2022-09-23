@@ -45,7 +45,7 @@ function setTile(): void {
     let col: number = rand();
     let tileNotAvailable: boolean = tiles[row][col] !== null;
     const percentage: number = Math.round(Math.random() * 10) / 10;
-    const twoOrFour = percentage < 1 ? 1024 : 4096;
+    const twoOrFour = percentage < 1 ? 2 : 4;
 
     while (tileNotAvailable) {
         row = rand();
@@ -54,6 +54,12 @@ function setTile(): void {
     }
 
     drawTile(row, col, twoOrFour);
+}
+
+function spawn(): void {
+    setTimeout(() => {
+        setTile();
+    }, 100);
 }
 
 function removeTile(deleteTile: Tile, movedTile: Tile): void {
