@@ -46,5 +46,6 @@
     background: lime;
     height: 106.25px;
     position: absolute;
+    transition: all 0.1s ease-in-out;
     width: 106.25px;
 }
