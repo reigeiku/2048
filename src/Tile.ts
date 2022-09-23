@@ -47,11 +47,11 @@ class Tile {
     #changeColour(): void {
         const keys: string[] = Object.keys(this.#theme);
         const values: string[] = Object.values(this.#theme);
-        const value: string = this.#value.toString();
+        const key: string = this.#value.toString();
         let color: string = "";
 
         for (let i = 0; i < keys.length; i++) {
-            if (keys[i] === value) color = values[i];
+            if (keys[i] === key) color = values[i];
         }
 
         this.#box.style.backgroundColor = color;
