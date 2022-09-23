@@ -24,6 +24,7 @@ type Coordinates = { x: number; y: number };
 type TileElement = Tile | null;
 
 const scoreBoard: HTMLElement = document.getElementById("score-board")!;
+const bestBoard: HTMLElement = document.getElementById("best")!;
 const container: HTMLElement = document.getElementById("game-container")!;
 const boxes: NodeListOf<Element> = document.querySelectorAll(".col")!;
 
@@ -45,6 +46,17 @@ const createCoords = (): Coordinates[][] => {
     });
 
     return elementCoords;
+};
+
+const getBestScore = (): number => {
+    const data: string | null = localStorage.getItem("bestScore");
+    if (!data) {
+        localStorage.setItem("bestScore", "0");
+        bestBoard.innerText = "0";
+        return 0;
+    }
+    bestBoard.innerText = data;
+    return parseInt(data);
 };
 
 const rand = (): number => Math.round(Math.random() * 3);

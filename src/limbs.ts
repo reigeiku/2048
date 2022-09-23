@@ -257,6 +257,10 @@ function handleInput(e: any) {
         spawn();
         numOfMovements = 0;
         scoreBoard.innerText = score.toString();
+        if (score > bestScore) {
+            bestBoard.innerText = score.toString();
+            localStorage.setItem("bestScore", score.toString());
+        }
     }
 
     setupInput();

@@ -31,6 +31,7 @@ const themeColour: ThemeColour = {
 
 let numOfMovements: number = 0;
 let score: number = 0;
+let bestScore: number = getBestScore();
 
 function drawTile(r: number, c: number, v: number): void {
     const coords: Coordinates = tileCoords[r][c];
