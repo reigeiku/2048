@@ -70,7 +70,7 @@ function removeTile(deleteTile: Tile, movedTile: Tile): void {
     setTimeout(() => {
         deleteTile.box.remove();
         movedTile.box.style.zIndex = "0";
-    }, 70);
+    }, 100);
 }
 
 setTile();
