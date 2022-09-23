@@ -29,6 +29,8 @@ const themeColour: ThemeColour = {
     1048576: "#5d6d7e",
 };
 
+let numOfMovements: number = 0;
+
 function drawTile(r: number, c: number, v: number): void {
     const coords: Coordinates = tileCoords[r][c];
     const newTile: HTMLElement = document.createElement("div");
@@ -59,14 +61,14 @@ function setTile(): void {
 function spawn(): void {
     setTimeout(() => {
         setTile();
-    }, 100);
+    }, 150);
 }
 
 function removeTile(deleteTile: Tile, movedTile: Tile): void {
     setTimeout(() => {
         deleteTile.box.remove();
         movedTile.box.style.zIndex = "0";
-    }, 100);
+    }, 50);
 }
 
 setTile();

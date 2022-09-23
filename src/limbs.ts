@@ -22,6 +22,7 @@ function moveUp(): void {
                 tiles[y - index][x] = currTile;
                 tiles[y - (index - 1)][x] = null;
                 index++;
+                numOfMovements++;
             }
         }
     }
@@ -49,6 +50,7 @@ function upCombineCheck(): void {
             tiles[y][x] = prevTile;
             tiles[y + 1][x] = null;
             removeTile(currTile, prevTile);
+            numOfMovements++;
         }
         moveUp();
     }
@@ -78,6 +80,7 @@ function moveDown(): void {
                 tiles[y + index][x] = currTile;
                 tiles[y + (index - 1)][x] = null;
                 index++;
+                numOfMovements++;
             }
         }
     }
@@ -104,6 +107,7 @@ function downCombineCheck(): void {
             tiles[y][x] = prevTile;
             tiles[y - 1][x] = null;
             removeTile(currTile, prevTile);
+            numOfMovements++;
         }
         moveDown();
     }
@@ -132,6 +136,7 @@ function moveLeft(): void {
                 tiles[y][x - index] = currTile;
                 tiles[y][x - (index - 1)] = null;
                 index++;
+                numOfMovements++;
             }
         }
     }
@@ -156,6 +161,7 @@ function leftCombineCheck(): void {
             tiles[y][x] = prevTile;
             tiles[y][x + 1] = null;
             removeTile(currTile, prevTile);
+            numOfMovements++;
         }
         moveLeft();
     }
@@ -184,6 +190,7 @@ function moveRight(): void {
                 tiles[y][x + index] = currTile;
                 tiles[y][x + (index - 1)] = null;
                 index++;
+                numOfMovements++;
             }
         }
     }
@@ -208,6 +215,7 @@ function rightCombineCheck(): void {
             tiles[y][x] = prevTile;
             tiles[y][x - 1] = null;
             removeTile(currTile, prevTile);
+            numOfMovements++;
         }
         moveRight();
     }
@@ -241,7 +249,10 @@ function handleInput(e: any) {
             return;
     }
 
-    spawn();
+    if (numOfMovements > 0) {
+        spawn();
+        numOfMovements = 0;
+    }
 
     setupInput();
 }
