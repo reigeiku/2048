@@ -74,7 +74,7 @@
 
 .gameover-screen {
     border-radius: 20px;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.8);
     position: absolute;
     top: 50%;
     left: 50%;
@@ -82,7 +82,7 @@
     z-index: 999;
     height: 100%;
     width: 100%;
-    display: flex;
+    display: none;
     align-items: center;
 }
 

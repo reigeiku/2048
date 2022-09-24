@@ -27,6 +27,7 @@ const scoreBoard: HTMLElement = document.getElementById("score-board")!;
 const bestBoard: HTMLElement = document.getElementById("best")!;
 const container: HTMLElement = document.getElementById("game-container")!;
 const boxes: NodeListOf<Element> = document.querySelectorAll(".col")!;
+const gameOverScreen: any = document.querySelectorAll(".gameover-screen")[0]!;
 
 const createCoords = (): Coordinates[][] => {
     const elementCoords: Coordinates[][] = [[], [], [], []];
