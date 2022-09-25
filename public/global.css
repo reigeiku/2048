@@ -1,108 +1,106 @@
+@import url("https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@100;300;400;500;700&display=swap");
+
 * {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
 }
 
-#score-board {
+body {
+    background-color: #fff6ea;
+    color: #212121;
+    font-family: "M PLUS Rounded 1c", sans-serif;
+}
+
+header {
+    margin: 50px auto;
     width: fit-content;
-    margin: 0 auto;
-    margin-top: 50px;
+}
+
+header h1 {
     font-size: 5rem;
+    text-align: center;
+}
+
+header h2 {
+    text-align: center;
 }
 
 #game-container {
     height: fit-content;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    width: fit-content;
-}
-
-.best-score {
-    width: fit-content;
     margin: 0 auto;
-}
-
-.box {
-    border: 1px solid black;
-    display: grid;
-    height: 100%;
-    width: 100%;
-    border-radius: 20px;
-}
-
-.row {
-    display: flex;
-    height: fit-content;
     width: fit-content;
-    padding: 0 20px 20px 20px;
-}
-
-.row:first-child {
-    padding-top: 20px;
-}
-
-.col {
-    height: 106.25px;
-    width: 106.25px;
-    background-color: antiquewhite;
-    margin-right: 20px;
-    border-radius: 20px;
-}
-
-.col:last-child {
-    margin-right: 0;
-}
-
-.tile {
-    height: 106.25px;
-    position: absolute;
-    -moz-transition: all 0.1 ease-in-out;
-    -webkit-transition: all 0.1 ease-in-out;
-    -ms-transition: all 0.1 ease-in-out;
-    -o-transition: all 0.1 ease-in-out;
-    transition: all 0.1s ease-in-out;
-    width: 106.25px;
-    border-radius: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 2.5rem;
 }
 
 .gameover-screen {
-    border-radius: 20px;
-    background-color: rgba(0, 0, 0, 0.8);
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 999;
-    height: 100%;
-    width: 100%;
-    display: none;
     align-items: center;
-}
-
-.gameover-details {
-    width: 100%;
+    border-radius: 20px;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: none;
+    height: 450px;
+    justify-content: center;
+    position: absolute;
+    width: 450px;
+    z-index: 999;
 }
 
 .gameover-details p {
     color: #fff;
+    font-size: 4.5rem;
+    font-weight: bold;
     text-align: center;
-    font-size: 5rem;
 }
 
 .gameover-details div {
-    width: fit-content;
     margin: 0 auto;
+    width: fit-content;
 }
 
-#play-again {
+.gameover-details input {
+    background-color: #fff;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-family: "M PLUS Rounded 1c", sans-serif;
     font-size: 1.5rem;
     height: 50px;
-    width: 150px;
+    width: 200px;
+}
+
+.gameover-details input:hover {
+    background-color: #929292;
+}
+
+.box {
+    background-color: #faebd7;
+    border-radius: 20px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    gap: 10px;
+    padding: 10px;
+}
+
+.col {
+    background-color: #ebd1b2;
+    border-radius: 20px;
+    height: 100px;
+    width: 100px;
+}
+
+.tile {
+    align-items: center;
+    border-radius: 20px;
+    display: flex;
+    font-size: 2.5rem;
+    font-weight: bold;
+    height: 100px;
+    justify-content: center;
+    position: absolute;
+    -webkit-transition: all 100ms ease;
+    -moz-transition: all 100ms ease;
+    -ms-transition: all 100ms ease;
+    -o-transition: all 100ms ease;
+    transition: all 100ms ease;
+    width: 100px;
 }
