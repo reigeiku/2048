@@ -1,39 +1,37 @@
-let tiles: TileElement[][] = [
-    [null, null, null, null],
-    [null, null, null, null],
-    [null, null, null, null],
-    [null, null, null, null],
-];
+const rand = (): number => Math.round(Math.random() * 3);
 
-const tileCoords: Coordinates[][] = createCoords();
-const themeColour: ThemeColour = {
-    2: "#cd6155",
-    4: "#a569bd",
-    8: "#5499c7",
-    16: "#45b39d",
-    32: "#52be80",
-    64: "#f5b041",
-    128: "#dc7633",
-    256: "#cacfd2",
-    512: "#99a3a4",
-    1024: "#566573",
-    2048: "#ec7063",
-    4096: "#af7ac5",
-    8192: "#5dade2",
-    16384: "#48c9b0",
-    32768: "#58d68d",
-    65536: "#f4d03f",
-    131072: "#eb984e",
-    262144: "#f0f3f4",
-    524288: "#aab7b8",
-    1048576: "#5d6d7e",
+const getBestScore = (): number => {
+    const data: string | null = localStorage.getItem("bestScore");
+    if (!data) {
+        localStorage.setItem("bestScore", "0");
+        bestBoard.innerText = "0";
+        return 0;
+    }
+    bestBoard.innerText = data;
+    return parseInt(data);
 };
 
-let numOfMovements: number = 0;
-let score: number = 0;
-let bestScore: number = getBestScore();
+const createCoords = (): Coordinates[][] => {
+    const elementCoords: Coordinates[][] = [[], [], [], []];
+    let rowIndex = 0;
+    let colIndex = 0;
 
-function checkIfCanMove(): boolean {
+    boxes.forEach((box: any) => {
+        if (colIndex === 4) {
+            rowIndex++;
+            colIndex = 0;
+        }
+        elementCoords[rowIndex].push({
+            x: box.offsetLeft,
+            y: box.offsetTop,
+        });
+        colIndex++;
+    });
+
+    return elementCoords;
+};
+
+const checkIfCanMove = (): boolean => {
     let numOfTakenTiles: number = 0;
     let canMove: boolean = false;
 
@@ -58,9 +56,9 @@ function checkIfCanMove(): boolean {
         return false;
     }
     return true;
-}
+};
 
-function drawTile(r: number, c: number, v: number): void {
+const drawTile = (r: number, c: number, v: number): void => {
     const coords: Coordinates = tileCoords[r][c];
     const newTile: HTMLElement = document.createElement("div");
 
@@ -69,9 +67,9 @@ function drawTile(r: number, c: number, v: number): void {
     container.appendChild(newTile);
 
     tiles[r][c];
-}
+};
 
-function setTile(): void {
+const setTile = (): void => {
     let row: number = rand();
     let col: number = rand();
     let tileNotAvailable: boolean = tiles[row][col] !== null;
@@ -90,24 +88,25 @@ function setTile(): void {
         gameOverScreen.style.display = "flex";
         return;
     }
-}
+};
 
-function spawn(): void {
+const spawn = (): void => {
     setTimeout(() => {
         setTile();
     }, 150);
-}
+};
 
-function removeTile(deleteTile: Tile, movedTile: Tile): void {
+const removeTile = (deleteTile: Tile, movedTile: Tile): void => {
     setTimeout(() => {
         deleteTile.box.remove();
         movedTile.box.style.zIndex = "0";
     }, 100);
-}
+};
 
-function playAgain(): void {
-    location.reload();
-}
+const playAgain = (): void => location.reload();
+
+tileCoords = createCoords();
+bestScore = getBestScore();
 
 setTile();
 setTile();

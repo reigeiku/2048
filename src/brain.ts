@@ -29,35 +29,35 @@ const container: HTMLElement = document.getElementById("game-container")!;
 const boxes: NodeListOf<Element> = document.querySelectorAll(".col")!;
 const gameOverScreen: any = document.querySelectorAll(".gameover-screen")[0]!;
 
-const createCoords = (): Coordinates[][] => {
-    const elementCoords: Coordinates[][] = [[], [], [], []];
-    let rowIndex = 0;
-    let colIndex = 0;
-
-    boxes.forEach((box: any) => {
-        if (colIndex === 4) {
-            rowIndex++;
-            colIndex = 0;
-        }
-        elementCoords[rowIndex].push({
-            x: box.offsetLeft,
-            y: box.offsetTop,
-        });
-        colIndex++;
-    });
-
-    return elementCoords;
+const themeColour: ThemeColour = {
+    2: "#cd6155",
+    4: "#a569bd",
+    8: "#5499c7",
+    16: "#45b39d",
+    32: "#52be80",
+    64: "#f5b041",
+    128: "#dc7633",
+    256: "#cacfd2",
+    512: "#99a3a4",
+    1024: "#566573",
+    2048: "#ec7063",
+    4096: "#af7ac5",
+    8192: "#5dade2",
+    16384: "#48c9b0",
+    32768: "#58d68d",
+    65536: "#f4d03f",
+    131072: "#eb984e",
+    262144: "#f0f3f4",
+    524288: "#aab7b8",
+    1048576: "#5d6d7e",
 };
-
-const getBestScore = (): number => {
-    const data: string | null = localStorage.getItem("bestScore");
-    if (!data) {
-        localStorage.setItem("bestScore", "0");
-        bestBoard.innerText = "0";
-        return 0;
-    }
-    bestBoard.innerText = data;
-    return parseInt(data);
-};
-
-const rand = (): number => Math.round(Math.random() * 3);
+let tiles: TileElement[][] = [
+    [null, null, null, null],
+    [null, null, null, null],
+    [null, null, null, null],
+    [null, null, null, null],
+];
+let tileCoords: Coordinates[][];
+let numOfMovements: number = 0;
+let score: number = 0;
+let bestScore: number;

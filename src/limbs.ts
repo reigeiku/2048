@@ -1,4 +1,4 @@
-function moveUp(): void {
+const moveUp = (): void => {
     for (let y = 1; y < tiles.length; y++) {
         const currRow: TileElement[] = tiles[y];
         const rowAhead: TileElement[] = tiles[y - 1];
@@ -26,9 +26,9 @@ function moveUp(): void {
             }
         }
     }
-}
+};
 
-function upCombineCheck(): void {
+const upCombineCheck = (): void => {
     for (let y = 0; y < tiles.length; y++) {
         const currRow: TileElement[] = tiles[y];
         const prevRow: TileElement[] = tiles[y + 1];
@@ -55,9 +55,9 @@ function upCombineCheck(): void {
         }
         moveUp();
     }
-}
+};
 
-function moveDown(): void {
+const moveDown = (): void => {
     for (let y = tiles.length - 2; y > -1; y--) {
         const currRow: TileElement[] = tiles[y];
         const rowAhead: TileElement[] = tiles[y + 1];
@@ -85,9 +85,9 @@ function moveDown(): void {
             }
         }
     }
-}
+};
 
-function downCombineCheck(): void {
+const downCombineCheck = (): void => {
     for (let y = tiles.length - 1; y > -1; y--) {
         const currRow: TileElement[] = tiles[y];
         const prevRow: TileElement[] = tiles[y - 1];
@@ -113,9 +113,9 @@ function downCombineCheck(): void {
         }
         moveDown();
     }
-}
+};
 
-function moveLeft(): void {
+const moveLeft = (): void => {
     for (let y = 0; y < tiles.length; y++) {
         const currRow: TileElement[] = tiles[y];
 
@@ -142,9 +142,9 @@ function moveLeft(): void {
             }
         }
     }
-}
+};
 
-function leftCombineCheck(): void {
+const leftCombineCheck = (): void => {
     for (let y = 0; y < tiles.length; y++) {
         const currRow: TileElement[] = tiles[y];
 
@@ -168,9 +168,9 @@ function leftCombineCheck(): void {
         }
         moveLeft();
     }
-}
+};
 
-function moveRight(): void {
+const moveRight = (): void => {
     for (let y = 0; y < tiles.length; y++) {
         const currRow: TileElement[] = tiles[y];
 
@@ -197,9 +197,9 @@ function moveRight(): void {
             }
         }
     }
-}
+};
 
-function rightCombineCheck(): void {
+const rightCombineCheck = (): void => {
     for (let y = 0; y < tiles.length; y++) {
         const currRow: TileElement[] = tiles[y];
 
@@ -223,13 +223,13 @@ function rightCombineCheck(): void {
         }
         moveRight();
     }
-}
+};
 
-function setupInput() {
+const setupInput = () => {
     document.addEventListener("keydown", handleInput, { once: true });
-}
+};
 
-function handleInput(e: any) {
+const handleInput = (e: any) => {
     const key: string = e.key;
     switch (key) {
         case "ArrowUp":
@@ -264,5 +264,5 @@ function handleInput(e: any) {
     }
 
     setupInput();
-}
+};
 setupInput();
