@@ -72,14 +72,22 @@ const drawTile = (r: number, c: number, v: number): void => {
 const setTile = (): void => {
     let row: number = rand();
     let col: number = rand();
+    let count: number = rand();
+    let takenTiles: string[] = [];
     let tileNotAvailable: boolean = tiles[row][col] !== null;
     const percentage: number = Math.round(Math.random() * 10) / 10;
     const twoOrFour: number = percentage < 1 ? 2 : 4;
 
     while (tileNotAvailable) {
+        if (count >= 16) return;
+
         row = rand();
         col = rand();
         tileNotAvailable = tiles[row][col] !== null;
+        if (!takenTiles.includes(`${row}${col}`)) {
+            takenTiles.push(`${row}${col}`);
+            count++;
+        }
     }
 
     drawTile(row, col, twoOrFour);
