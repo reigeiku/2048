@@ -80,14 +80,13 @@ const setTile = (): void => {
 
     while (tileNotAvailable) {
         if (count >= 16) return;
-
-        row = rand();
-        col = rand();
-        tileNotAvailable = tiles[row][col] !== null;
         if (!takenTiles.includes(`${row}${col}`)) {
             takenTiles.push(`${row}${col}`);
             count++;
         }
+        row = rand();
+        col = rand();
+        tileNotAvailable = tiles[row][col] !== null;
     }
 
     drawTile(row, col, twoOrFour);
