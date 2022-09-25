@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>2048</title>
+        <link rel="stylesheet" type="text/css" href="global.css" />
+    </head>
+    <body>
+        <header>
+            <h1 id="score-board">2048</h1>
+            <h2>Best: <span id="best-score">0</span></h2>
+        </header>
+        <div id="game-container">
+            <div class="gameover-screen">
+                <div class="gameover-details">
+                    <p>Game Over</p>
+                    <div>
+                        <input
+                            id="play-again"
+                            onclick="playAgain()"
+                            type="button"
+                            value="Play again?"
+                        />
+                    </div>
+                </div>
+            </div>
+            <div class="box">
+                <div class="col"></div>
+                <div class="col"></div>
+                <div class="col"></div>
+                <div class="col"></div>
+
+                <div class="col"></div>
+                <div class="col"></div>
+                <div class="col"></div>
+                <div class="col"></div>
+
+                <div class="col"></div>
+                <div class="col"></div>
+                <div class="col"></div>
+                <div class="col"></div>
+
+                <div class="col"></div>
+                <div class="col"></div>
+                <div class="col"></div>
+                <div class="col"></div>
+            </div>
+        </div>
+        <script src="../dist/Tile.js"></script>
+        <script src="../dist/brain.js"></script>
+        <script src="../dist/heart.js"></script>
+        <script src="../dist/limbs.js"></script>
+    </body>
+</html>
