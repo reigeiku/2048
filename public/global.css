@@ -102,5 +102,11 @@ header h2 {
     -ms-transition: all 100ms ease;
     -o-transition: all 100ms ease;
     transition: all 100ms ease;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
     width: 100px;
 }
