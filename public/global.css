@@ -27,9 +27,9 @@ header h2 {
 }
 
 #game-container {
-    height: fit-content;
+    height: 450px;
     margin: 0 auto;
-    width: fit-content;
+    width: 450px;
 }
 
 .gameover-screen {
@@ -37,10 +37,10 @@ header h2 {
     border-radius: 20px;
     background-color: rgba(0, 0, 0, 0.7);
     display: none;
-    height: 450px;
+    height: inherit;
     justify-content: center;
     position: absolute;
-    width: 450px;
+    width: inherit;
     z-index: 999;
 }
 
@@ -71,6 +71,17 @@ header h2 {
     background-color: #929292;
 }
 
+#tile-box {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    gap: 10px;
+    height: 450px;
+    padding: 10px;
+    position: absolute;
+    width: 450px;
+}
+
 .box {
     background-color: #faebd7;
     border-radius: 20px;
@@ -96,7 +107,6 @@ header h2 {
     font-weight: bold;
     height: 100px;
     justify-content: center;
-    position: absolute;
     -webkit-transition: all 100ms ease;
     -moz-transition: all 100ms ease;
     -ms-transition: all 100ms ease;
@@ -109,4 +119,8 @@ header h2 {
     -ms-user-select: none;
     user-select: none;
     width: 100px;
+}
+
+.moving {
+    position: fixed;
 }

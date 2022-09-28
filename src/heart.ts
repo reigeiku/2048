@@ -60,10 +60,11 @@ const checkIfCanMove = (): boolean => {
 
 const drawTile = (r: number, c: number, v: number): void => {
     const coords: Coordinates = tileCoords[r][c];
+    const placement: Coordinates = gridPos[r][c];
     const newTile: HTMLElement = document.createElement("div");
 
     newTile.classList.add("tile");
-    tiles[r][c] = new Tile(newTile, themeColour, coords, v);
+    tiles[r][c] = new Tile(newTile, themeColour, placement, coords, v);
     container.appendChild(newTile);
 
     tiles[r][c];
@@ -114,6 +115,19 @@ const playAgain = (): void => location.reload();
 
 tileCoords = createCoords();
 bestScore = getBestScore();
+
+window.addEventListener("resize", () => {
+    tileCoords = createCoords();
+    for (let y = 0; y < 3; y++) {
+        for (let x = 0; x < 3; x++) {
+            const currTile: TileElement = tiles[y][x];
+            const newCoords: Coordinates = tileCoords[y][x];
+            if (!currTile) continue;
+
+            currTile.coords = newCoords;
+        }
+    }
+});
 
 setTile();
 setTile();

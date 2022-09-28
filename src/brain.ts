@@ -20,12 +20,12 @@ type ThemeColour = {
     524288: string;
     1048576: string;
 };
-type Coordinates = { x: number; y: number };
+type Coordinates = { y: number; x: number };
 type TileElement = Tile | null;
 
 const scoreBoard: HTMLElement = document.getElementById("score-board")!;
 const bestBoard: HTMLElement = document.getElementById("best-score")!;
-const container: HTMLElement = document.getElementById("game-container")!;
+const container: HTMLElement = document.getElementById("tile-box")!;
 const boxes: NodeListOf<Element> = document.querySelectorAll(".col")!;
 const gameOverScreen: any = document.querySelectorAll(".gameover-screen")[0]!;
 
@@ -56,6 +56,32 @@ let tiles: TileElement[][] = [
     [null, null, null, null],
     [null, null, null, null],
     [null, null, null, null],
+];
+let gridPos: Coordinates[][] = [
+    [
+        { y: 1, x: 1 },
+        { y: 1, x: 2 },
+        { y: 1, x: 3 },
+        { y: 1, x: 4 },
+    ],
+    [
+        { y: 2, x: 1 },
+        { y: 2, x: 2 },
+        { y: 2, x: 3 },
+        { y: 2, x: 4 },
+    ],
+    [
+        { y: 3, x: 1 },
+        { y: 3, x: 2 },
+        { y: 3, x: 3 },
+        { y: 3, x: 4 },
+    ],
+    [
+        { y: 4, x: 1 },
+        { y: 4, x: 2 },
+        { y: 4, x: 3 },
+        { y: 4, x: 4 },
+    ],
 ];
 let tileCoords: Coordinates[][];
 let numOfMovements: number = 0;

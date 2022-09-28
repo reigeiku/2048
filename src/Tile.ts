@@ -1,27 +1,37 @@
 class Tile {
     #box: HTMLElement;
     #theme: ThemeColour;
-    #value: number;
-    #coords: Coordinates;
+    #value: number = 0;
+    #coords: Coordinates = { y: 0, x: 0 };
+    #placement: Coordinates = { y: 0, x: 0 };
 
     constructor(
         box: HTMLElement,
         theme: ThemeColour,
+        placement: Coordinates,
         coords: Coordinates,
         value: number
     ) {
         this.#box = box;
         this.#theme = theme;
-        this.#box.style.left = coords.x + "px";
-        this.#box.style.top = coords.y + "px";
-        this.#box.innerText = value.toString();
-        this.#coords = coords;
-        this.#value = value;
+        this.placement = placement;
+        this.coords = coords;
+        this.value = value;
         this.#changeColour();
     }
 
     get box(): HTMLElement {
         return this.#box;
+    }
+
+    get placement(): Coordinates {
+        return this.#placement;
+    }
+
+    set placement(newPlacement: Coordinates) {
+        this.#box.style.gridRow = newPlacement.y.toString();
+        this.#box.style.gridColumn = newPlacement.x.toString();
+        this.#placement = newPlacement;
     }
 
     get coords(): Coordinates {

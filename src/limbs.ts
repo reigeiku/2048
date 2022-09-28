@@ -1,3 +1,13 @@
+const moving = (box: HTMLElement): void => {
+    box.classList.add("moving");
+};
+
+const idle = (box: HTMLElement): void => {
+    setTimeout(() => {
+        box.classList.remove("moving");
+    }, 100);
+};
+
 const moveUp = (): void => {
     for (let y = 1; y < tiles.length; y++) {
         const currRow: TileElement[] = tiles[y];
@@ -16,13 +26,17 @@ const moveUp = (): void => {
                 )
                     break;
 
+                const gridPosition: Coordinates = gridPos[y - index][x];
                 const coordsToJumpTo: Coordinates = tileCoords[y - index][x];
+                moving(currTile.box);
                 currTile.coords = coordsToJumpTo;
+                currTile.placement = gridPosition;
 
                 tiles[y - index][x] = currTile;
                 tiles[y - (index - 1)][x] = null;
                 index++;
                 numOfMovements++;
+                idle(currTile.box);
             }
         }
     }
@@ -42,9 +56,12 @@ const upCombineCheck = (): void => {
             if (currTile === null || prevTile === null) continue;
             if (currTile.value !== prevTile.value) continue;
 
+            const gridPosition: Coordinates = gridPos[y][x];
             const coordsToJumpTo: Coordinates = tileCoords[y][x];
+            moving(prevTile.box);
             prevTile.box.style.zIndex = "99";
             prevTile.coords = coordsToJumpTo;
+            prevTile.placement = gridPosition;
             prevTile.value = prevTile.value * 2;
 
             tiles[y][x] = prevTile;
@@ -52,6 +69,7 @@ const upCombineCheck = (): void => {
             removeTile(currTile, prevTile);
             numOfMovements++;
             score += prevTile.value;
+            idle(prevTile.box);
         }
         moveUp();
     }
@@ -75,13 +93,17 @@ const moveDown = (): void => {
                 )
                     break;
 
+                const gridPosition: Coordinates = gridPos[y + index][x];
                 const coordsToJumpTo: Coordinates = tileCoords[y + index][x];
+                moving(currTile.box);
                 currTile.coords = coordsToJumpTo;
+                currTile.placement = gridPosition;
 
                 tiles[y + index][x] = currTile;
                 tiles[y + (index - 1)][x] = null;
                 index++;
                 numOfMovements++;
+                idle(currTile.box);
             }
         }
     }
@@ -101,8 +123,11 @@ const downCombineCheck = (): void => {
             if (currTile === null || prevTile === null) continue;
             if (currTile.value !== prevTile.value) continue;
 
+            const gridPosition: Coordinates = gridPos[y][x];
             const coordsToJumpTo: Coordinates = tileCoords[y][x];
+            moving(prevTile.box);
             prevTile.coords = coordsToJumpTo;
+            prevTile.placement = gridPosition;
             prevTile.value = prevTile.value * 2;
 
             tiles[y][x] = prevTile;
@@ -110,6 +135,7 @@ const downCombineCheck = (): void => {
             removeTile(currTile, prevTile);
             numOfMovements++;
             score += prevTile.value;
+            idle(prevTile.box);
         }
         moveDown();
     }
@@ -132,13 +158,17 @@ const moveLeft = (): void => {
                 )
                     break;
 
+                const gridPosition: Coordinates = gridPos[y][x - index];
                 const coordsToJumpTo: Coordinates = tileCoords[y][x - index];
+                moving(currTile.box);
                 currTile.coords = coordsToJumpTo;
+                currTile.placement = gridPosition;
 
                 tiles[y][x - index] = currTile;
                 tiles[y][x - (index - 1)] = null;
                 index++;
                 numOfMovements++;
+                idle(currTile.box);
             }
         }
     }
@@ -156,8 +186,11 @@ const leftCombineCheck = (): void => {
             if (currTile === null || prevTile === null) continue;
             if (currTile.value !== prevTile.value) continue;
 
+            const gridPosition: Coordinates = gridPos[y][x];
             const coordsToJumpTo: Coordinates = tileCoords[y][x];
+            moving(prevTile.box);
             prevTile.coords = coordsToJumpTo;
+            prevTile.placement = gridPosition;
             prevTile.value = prevTile.value * 2;
 
             tiles[y][x] = prevTile;
@@ -165,6 +198,7 @@ const leftCombineCheck = (): void => {
             removeTile(currTile, prevTile);
             numOfMovements++;
             score += prevTile.value;
+            idle(prevTile.box);
         }
         moveLeft();
     }
@@ -187,13 +221,17 @@ const moveRight = (): void => {
                 )
                     break;
 
+                const gridPosition: Coordinates = gridPos[y][x + index];
                 const coordsToJumpTo: Coordinates = tileCoords[y][x + index];
+                moving(currTile.box);
                 currTile.coords = coordsToJumpTo;
+                currTile.placement = gridPosition;
 
                 tiles[y][x + index] = currTile;
                 tiles[y][x + (index - 1)] = null;
                 index++;
                 numOfMovements++;
+                idle(currTile.box);
             }
         }
     }
@@ -211,8 +249,11 @@ const rightCombineCheck = (): void => {
             if (currTile === null || prevTile === null) continue;
             if (currTile.value !== prevTile.value) continue;
 
+            const gridPosition: Coordinates = gridPos[y][x];
             const coordsToJumpTo: Coordinates = tileCoords[y][x];
+            moving(prevTile.box);
             prevTile.coords = coordsToJumpTo;
+            prevTile.placement = gridPosition;
             prevTile.value = prevTile.value * 2;
 
             tiles[y][x] = prevTile;
@@ -220,6 +261,7 @@ const rightCombineCheck = (): void => {
             removeTile(currTile, prevTile);
             numOfMovements++;
             score += prevTile.value;
+            idle(prevTile.box);
         }
         moveRight();
     }
