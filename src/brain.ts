@@ -28,6 +28,7 @@ const bestBoard: HTMLElement = document.getElementById("best-score")!;
 const container: HTMLElement = document.getElementById("tile-box")!;
 const boxes: NodeListOf<Element> = document.querySelectorAll(".col")!;
 const gameOverScreen: any = document.querySelectorAll(".gameover-screen")[0]!;
+const winScreen: any = document.querySelectorAll(".win-screen")[0]!;
 
 const themeColour: ThemeColour = {
     2: "#cd6155",
@@ -87,3 +88,5 @@ let tileCoords: Coordinates[][];
 let numOfMovements: number = 0;
 let score: number = 0;
 let bestScore: number;
+let reachedWin: boolean = false;
+let gameStart: boolean = true;

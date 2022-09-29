@@ -111,10 +111,21 @@ const removeTile = (deleteTile: Tile, movedTile: Tile): void => {
     }, 100);
 };
 
-const playAgain = (): void => location.reload();
+const checkScore = (s: number): void => {
+    if (s === 2048 && !reachedWin) {
+        gameStart = false;
+        winScreen.style.display = "flex";
+        reachedWin = true;
+    }
+};
 
-tileCoords = createCoords();
-bestScore = getBestScore();
+const continueGame = (): void => {
+    winScreen.style.display = "none";
+    gameStart = true;
+    setupInput();
+};
+
+const playAgain = (): void => location.reload();
 
 window.addEventListener("resize", () => {
     tileCoords = createCoords();
@@ -129,5 +140,11 @@ window.addEventListener("resize", () => {
     }
 });
 
-setTile();
-setTile();
+const start = (): void => {
+    tileCoords = createCoords();
+    bestScore = getBestScore();
+    setTile();
+    setTile();
+};
+
+window.onload = start;

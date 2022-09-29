@@ -63,6 +63,7 @@ const upCombineCheck = (): void => {
             prevTile.coords = coordsToJumpTo;
             prevTile.placement = gridPosition;
             prevTile.value = prevTile.value * 2;
+            checkScore(prevTile.value);
 
             tiles[y][x] = prevTile;
             tiles[y + 1][x] = null;
@@ -126,9 +127,11 @@ const downCombineCheck = (): void => {
             const gridPosition: Coordinates = gridPos[y][x];
             const coordsToJumpTo: Coordinates = tileCoords[y][x];
             moving(prevTile.box);
+            prevTile.box.style.zIndex = "99";
             prevTile.coords = coordsToJumpTo;
             prevTile.placement = gridPosition;
             prevTile.value = prevTile.value * 2;
+            checkScore(prevTile.value);
 
             tiles[y][x] = prevTile;
             tiles[y - 1][x] = null;
@@ -189,9 +192,11 @@ const leftCombineCheck = (): void => {
             const gridPosition: Coordinates = gridPos[y][x];
             const coordsToJumpTo: Coordinates = tileCoords[y][x];
             moving(prevTile.box);
+            prevTile.box.style.zIndex = "99";
             prevTile.coords = coordsToJumpTo;
             prevTile.placement = gridPosition;
             prevTile.value = prevTile.value * 2;
+            checkScore(prevTile.value);
 
             tiles[y][x] = prevTile;
             tiles[y][x + 1] = null;
@@ -252,9 +257,11 @@ const rightCombineCheck = (): void => {
             const gridPosition: Coordinates = gridPos[y][x];
             const coordsToJumpTo: Coordinates = tileCoords[y][x];
             moving(prevTile.box);
+            prevTile.box.style.zIndex = "99";
             prevTile.coords = coordsToJumpTo;
             prevTile.placement = gridPosition;
             prevTile.value = prevTile.value * 2;
+            checkScore(prevTile.value);
 
             tiles[y][x] = prevTile;
             tiles[y][x - 1] = null;
@@ -268,7 +275,9 @@ const rightCombineCheck = (): void => {
 };
 
 const setupInput = () => {
-    document.addEventListener("keydown", handleInput, { once: true });
+    if (gameStart) {
+        document.addEventListener("keydown", handleInput, { once: true });
+    }
 };
 
 const handleInput = (e: any) => {
