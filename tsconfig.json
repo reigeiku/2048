@@ -8,5 +8,11 @@
         "strict": true,
         "isolatedModules": true
     },
-    "include": ["src/"]
+    "include": [
+        "src/",
+        "stuff/heart.ts",
+        "stuff/limbs.ts",
+        "stuff/brain.ts",
+        "stuff/Tile.ts"
+    ]
 }
