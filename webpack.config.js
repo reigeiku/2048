@@ -4,12 +4,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const path = require("path");
 
 module.exports = {
-    entry: [
-        "./src/Tile.ts",
-        "./src/brain.ts",
-        "./src/heart.ts",
-        "./src/limbs.ts",
-    ],
+    entry: ["./src/main.ts"],
     output: {
         filename: "main.js",
         path: path.resolve(__dirname, "dist"),
@@ -22,7 +17,7 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\/(ts|js)x$/,
+                test: /\.(ts|js)x?$/,
                 exclude: /nodule_modules/,
                 use: [
                     {
