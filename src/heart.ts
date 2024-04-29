@@ -73,8 +73,6 @@ const drawTile = (r: number, c: number, v: number): void => {
     newTile.classList.add("tile");
     tiles[r][c] = new Tile(newTile, themeColour, placement, coords, v);
     container.appendChild(newTile);
-
-    tiles[r][c]; //???
 };
 
 const setTile = (): void => {
@@ -154,13 +152,14 @@ const saveTiles = (tiles: number[][]): void => {
 };
 
 const redrawBoard = (): void => {
+    tileCoords = createCoords();
     for (let y = 0; y < 4; y++) {
         for (let x = 0; x < 4; x++) {
-            const currValue = tilesValues[y][x];
-            console.log(currValue);
-            if (currValue !== 0) {
-                drawTile(y, x, currValue);
-            }
+            const currTile: TileElement = tiles[y][x];
+            const newCoords: Coordinates = tileCoords[y][x];
+            if (!currTile) continue;
+
+            currTile.coords = newCoords;
         }
     }
 };
@@ -170,7 +169,6 @@ const start = (): void => {
     scores = getScores();
     const boardAsString: string | null = localStorage.getItem("tiles");
     const { currentScore, bestValue, bestScore } = scores;
-    console.log(scores);
 
     if (
         !boardAsString ||
@@ -179,7 +177,6 @@ const start = (): void => {
         setTile();
         setTile();
 
-        console.log(scores);
         bestScoreBoard.innerText = bestScore.toString();
         return;
     }
@@ -187,10 +184,9 @@ const start = (): void => {
     scoreBoard.innerText = currentScore.toString();
     bestValueBoard.innerText = bestValue.toString();
     bestScoreBoard.innerText = bestScore.toString();
-    console.log(JSON.parse(boardAsString));
+
     tilesValues = JSON.parse(boardAsString);
-    redrawBoard();
 };
 
-window.addEventListener("resize", reload);
+window.addEventListener("resize", redrawBoard);
 window.onload = start;
