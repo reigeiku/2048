@@ -22,8 +22,21 @@ header h1 {
     text-align: center;
 }
 
-header h2 {
+input {
+    font-family: "M PLUS Rounded 1c", sans-serif;
+}
+
+#stats {
+    list-style: none;
+}
+
+.stat {
     text-align: center;
+    font-size: 1.5rem;
+}
+
+.stat > span {
+    font-weight: bold;
 }
 
 #game-container {
@@ -158,6 +171,18 @@ header h2 {
     -ms-user-select: none;
     user-select: none;
     width: 100px;
+}
+
+#reset-button {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 0);
+    margin-top: 50px;
+    padding: 5px 40px;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 1.5rem;
+    cursor: pointer;
 }
 
 .moving {

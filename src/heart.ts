@@ -1,14 +1,21 @@
 const rand = (): number => Math.round(Math.random() * 3);
 
-const getBestScore = (): number => {
-    const data: string | null = localStorage.getItem("bestScore");
+const getScores = (): Scores => {
+    const data: string | null = localStorage.getItem("scores");
+
     if (!data) {
-        localStorage.setItem("bestScore", "0");
-        bestBoard.innerText = "0";
-        return 0;
+        const newScores: Scores = {
+            currentScore: 0,
+            bestScore: 0,
+            bestValue: 0,
+        };
+        localStorage.setItem("score", JSON.stringify(newScores));
+        return newScores;
     }
-    bestBoard.innerText = data;
-    return parseInt(data);
+
+    const newScores: Scores = JSON.parse(data);
+
+    return newScores;
 };
 
 const createCoords = (): Coordinates[][] => {
@@ -67,7 +74,7 @@ const drawTile = (r: number, c: number, v: number): void => {
     tiles[r][c] = new Tile(newTile, themeColour, placement, coords, v);
     container.appendChild(newTile);
 
-    tiles[r][c];
+    tiles[r][c]; //???
 };
 
 const setTile = (): void => {
@@ -91,6 +98,7 @@ const setTile = (): void => {
     }
 
     drawTile(row, col, twoOrFour);
+    tilesValues[row][col] = twoOrFour;
 
     if (!checkIfCanMove()) {
         gameOverScreen.style.display = "flex";
@@ -101,6 +109,7 @@ const setTile = (): void => {
 const spawn = (): void => {
     setTimeout(() => {
         setTile();
+        saveTiles(tilesValues);
     }, 150);
 };
 
@@ -119,32 +128,69 @@ const checkScore = (s: number): void => {
     }
 };
 
+const resetGame = (): void => {
+    scores.currentScore = 0;
+    scores.bestValue = 0;
+    localStorage.setItem("scores", JSON.stringify(scores));
+    saveTiles([
+        [0, 0, 0, 0],
+        [0, 0, 0, 0],
+        [0, 0, 0, 0],
+        [0, 0, 0, 0],
+    ]);
+    reload();
+};
+
 const continueGame = (): void => {
     winScreen.style.display = "none";
     gameStart = true;
     setupInput();
 };
 
-const playAgain = (): void => location.reload();
+const reload = (): void => location.reload();
 
-window.addEventListener("resize", () => {
-    tileCoords = createCoords();
-    for (let y = 0; y < 3; y++) {
-        for (let x = 0; x < 3; x++) {
-            const currTile: TileElement = tiles[y][x];
-            const newCoords: Coordinates = tileCoords[y][x];
-            if (!currTile) continue;
+const saveTiles = (tiles: number[][]): void => {
+    localStorage.setItem("tiles", JSON.stringify(tiles));
+};
 
-            currTile.coords = newCoords;
+const redrawBoard = (): void => {
+    for (let y = 0; y < 4; y++) {
+        for (let x = 0; x < 4; x++) {
+            const currValue = tilesValues[y][x];
+            console.log(currValue);
+            if (currValue !== 0) {
+                drawTile(y, x, currValue);
+            }
         }
     }
-});
+};
 
 const start = (): void => {
     tileCoords = createCoords();
-    bestScore = getBestScore();
-    setTile();
-    setTile();
+    scores = getScores();
+    const boardAsString: string | null = localStorage.getItem("tiles");
+    const { currentScore, bestValue, bestScore } = scores;
+    console.log(scores);
+
+    if (
+        !boardAsString ||
+        boardAsString === "[[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0]]"
+    ) {
+        setTile();
+        setTile();
+
+        console.log(scores);
+        bestScoreBoard.innerText = bestScore.toString();
+        return;
+    }
+
+    scoreBoard.innerText = currentScore.toString();
+    bestValueBoard.innerText = bestValue.toString();
+    bestScoreBoard.innerText = bestScore.toString();
+    console.log(JSON.parse(boardAsString));
+    tilesValues = JSON.parse(boardAsString);
+    redrawBoard();
 };
 
+window.addEventListener("resize", reload);
 window.onload = start;
