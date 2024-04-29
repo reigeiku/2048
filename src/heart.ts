@@ -164,6 +164,16 @@ const redrawBoard = (): void => {
     }
 };
 
+const drawBoard = (): void => {
+    for (let y = 0; y < 4; y++) {
+        for (let x = 0; x < 4; x++) {
+            const currTileValue: number = tilesValues[y][x];
+            if (!currTileValue) continue;
+            drawTile(y, x, currTileValue);
+        }
+    }
+};
+
 const start = (): void => {
     tileCoords = createCoords();
     scores = getScores();
@@ -186,6 +196,7 @@ const start = (): void => {
     bestScoreBoard.innerText = bestScore.toString();
 
     tilesValues = JSON.parse(boardAsString);
+    drawBoard();
 };
 
 window.addEventListener("resize", redrawBoard);
