@@ -280,6 +280,16 @@ const redrawBoard = () => {
         }
     }
 };
+const drawBoard = () => {
+    for (let y = 0; y < 4; y++) {
+        for (let x = 0; x < 4; x++) {
+            const currTileValue = tilesValues[y][x];
+            if (!currTileValue)
+                continue;
+            drawTile(y, x, currTileValue);
+        }
+    }
+};
 const start = () => {
     tileCoords = createCoords();
     scores = getScores();
@@ -296,6 +306,7 @@ const start = () => {
     bestValueBoard.innerText = bestValue.toString();
     bestScoreBoard.innerText = bestScore.toString();
     tilesValues = JSON.parse(boardAsString);
+    drawBoard();
 };
 window.addEventListener("resize", redrawBoard);
 window.onload = start;
