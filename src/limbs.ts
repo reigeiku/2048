@@ -33,7 +33,9 @@ const moveUp = (): void => {
                 currTile.placement = gridPosition;
 
                 tiles[y - index][x] = currTile;
+                tilesValues[y - index][x] = currTile.value;
                 tiles[y - (index - 1)][x] = null;
+                tilesValues[y - (index - 1)][x] = 0;
                 index++;
                 numOfMovements++;
                 idle(currTile.box);
@@ -66,10 +68,12 @@ const upCombineCheck = (): void => {
             checkScore(prevTile.value);
 
             tiles[y][x] = prevTile;
+            tilesValues[y][x] = prevTile.value;
             tiles[y + 1][x] = null;
+            tilesValues[y + 1][x] = 0;
             removeTile(currTile, prevTile);
             numOfMovements++;
-            score += prevTile.value;
+            scores.currentScore += prevTile.value;
             idle(prevTile.box);
         }
         moveUp();
@@ -101,7 +105,9 @@ const moveDown = (): void => {
                 currTile.placement = gridPosition;
 
                 tiles[y + index][x] = currTile;
+                tilesValues[y + index][x] = currTile.value;
                 tiles[y + (index - 1)][x] = null;
+                tilesValues[y + (index - 1)][x] = 0;
                 index++;
                 numOfMovements++;
                 idle(currTile.box);
@@ -134,10 +140,12 @@ const downCombineCheck = (): void => {
             checkScore(prevTile.value);
 
             tiles[y][x] = prevTile;
+            tilesValues[y][x] = prevTile.value;
             tiles[y - 1][x] = null;
+            tilesValues[y - 1][x] = 0;
             removeTile(currTile, prevTile);
             numOfMovements++;
-            score += prevTile.value;
+            scores.currentScore += prevTile.value;
             idle(prevTile.box);
         }
         moveDown();
@@ -168,7 +176,9 @@ const moveLeft = (): void => {
                 currTile.placement = gridPosition;
 
                 tiles[y][x - index] = currTile;
+                tilesValues[y][x - index] = currTile.value;
                 tiles[y][x - (index - 1)] = null;
+                tilesValues[y][x - (index - 1)] = 0;
                 index++;
                 numOfMovements++;
                 idle(currTile.box);
@@ -199,10 +209,12 @@ const leftCombineCheck = (): void => {
             checkScore(prevTile.value);
 
             tiles[y][x] = prevTile;
+            tilesValues[y][x] = prevTile.value;
             tiles[y][x + 1] = null;
+            tilesValues[y][x + 1] = 0;
             removeTile(currTile, prevTile);
             numOfMovements++;
-            score += prevTile.value;
+            scores.currentScore += prevTile.value;
             idle(prevTile.box);
         }
         moveLeft();
@@ -233,7 +245,9 @@ const moveRight = (): void => {
                 currTile.placement = gridPosition;
 
                 tiles[y][x + index] = currTile;
+                tilesValues[y][x + index] = currTile.value;
                 tiles[y][x + (index - 1)] = null;
+                tilesValues[y][x + (index - 1)] = 0;
                 index++;
                 numOfMovements++;
                 idle(currTile.box);
@@ -264,10 +278,12 @@ const rightCombineCheck = (): void => {
             checkScore(prevTile.value);
 
             tiles[y][x] = prevTile;
+            tilesValues[y][x] = prevTile.value;
             tiles[y][x - 1] = null;
+            tilesValues[y][x - 1] = 0;
             removeTile(currTile, prevTile);
             numOfMovements++;
-            score += prevTile.value;
+            scores.currentScore += prevTile.value;
             idle(prevTile.box);
         }
         moveRight();
@@ -307,11 +323,22 @@ const handleInput = (e: any) => {
     if (numOfMovements > 0) {
         spawn();
         numOfMovements = 0;
-        scoreBoard.innerText = score.toString();
-        if (score > bestScore) {
-            bestBoard.innerText = score.toString();
-            localStorage.setItem("bestScore", score.toString());
+        for (let y = 0; y < tilesValues.length; y++) {
+            const currentBestValue = Math.max(...tilesValues[y]);
+            if (currentBestValue > scores.bestValue) {
+                scores.bestValue = currentBestValue;
+            }
         }
+
+        const { currentScore, bestScore, bestValue } = scores;
+
+        bestValueBoard.innerText = bestValue.toString();
+        scoreBoard.innerText = currentScore.toString();
+        if (currentScore > bestScore) {
+            scores.bestScore = currentScore;
+            bestScoreBoard.innerText = currentScore.toString();
+        }
+        localStorage.setItem("scores", JSON.stringify(scores));
     }
 
     setupInput();

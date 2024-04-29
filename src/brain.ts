@@ -22,9 +22,15 @@ type ThemeColour = {
 };
 type Coordinates = { y: number; x: number };
 type TileElement = Tile | null;
+type Scores = {
+    currentScore: number;
+    bestScore: number;
+    bestValue: number;
+};
 
+const bestValueBoard: HTMLElement = document.getElementById("best-value")!;
 const scoreBoard: HTMLElement = document.getElementById("score-board")!;
-const bestBoard: HTMLElement = document.getElementById("best-score")!;
+const bestScoreBoard: HTMLElement = document.getElementById("best-score")!;
 const container: HTMLElement = document.getElementById("tile-box")!;
 const boxes: NodeListOf<Element> = document.querySelectorAll(".col")!;
 const gameOverScreen: any = document.querySelectorAll(".gameover-screen")[0]!;
@@ -58,6 +64,12 @@ let tiles: TileElement[][] = [
     [null, null, null, null],
     [null, null, null, null],
 ];
+let tilesValues = [
+    [0, 0, 0, 0],
+    [0, 0, 0, 0],
+    [0, 0, 0, 0],
+    [0, 0, 0, 0],
+];
 let gridPos: Coordinates[][] = [
     [
         { y: 1, x: 1 },
@@ -86,7 +98,6 @@ let gridPos: Coordinates[][] = [
 ];
 let tileCoords: Coordinates[][];
 let numOfMovements: number = 0;
-let score: number = 0;
-let bestScore: number;
+let scores: Scores;
 let reachedWin: boolean = false;
 let gameStart: boolean = true;

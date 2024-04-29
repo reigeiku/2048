@@ -9,8 +9,13 @@
     </head>
     <body>
         <header>
-            <h1 id="score-board">2048</h1>
-            <h2>Best: <span id="best-score">0</span></h2>
+            <h1 id="best-value">2048</h1>
+            <ul id="stats">
+                <li class="stat">
+                    Current score: <span id="score-board">0</span>
+                </li>
+                <li class="stat">Best score: <span id="best-score">0</span></li>
+            </ul>
         </header>
         <div id="game-container">
             <div class="gameover-screen">
@@ -18,7 +23,7 @@
                     <p>Game Over</p>
                     <div>
                         <input
-                            onclick="playAgain()"
+                            onclick="reload()"
                             type="button"
                             value="Play again?"
                         />
@@ -60,6 +65,12 @@
                 <div class="col"></div>
             </div>
         </div>
+        <input
+            id="reset-button"
+            onclick="resetGame()"
+            type="button"
+            value="Reset?"
+        />
         <script src="../dist/Tile.js"></script>
         <script src="../dist/brain.js"></script>
         <script src="../dist/heart.js"></script>
